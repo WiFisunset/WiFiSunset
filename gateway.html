@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--  <title>Hello, WebVR! - A-Frame</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame"> -->
+
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-particle-system-component.min.js"></script>
+<script src="js/aframe-rain.min.js"></script>
+<script src="js/aframe-mountain-component.min.js"></script>
+<script src="js/aframe-audioanalyser-component.min.js"></script>
+<script src="js/aframe-room-component.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <a-scene>
+
+      <a-assets>
+                <img id="homeThumbnail" src="img/homeland.jpg">
+                <audio id="gateway" src="sound/gateway.mp3"></audio>
+      </a-assets>
+
+      <a-sky color="#7ec0ee"></a-sky>
+
+	  <a-entity position="2.86 0 0" mountain="color: brown" sound="on:mouseenter; src: #gateway; loop: true"></a-entity>
+
+    <a-entity id="text-plane"
+           position= "1 3.5 -10"
+           geometry="primitive: plane; width: 4; height: auto; depth: 30"
+           material="color: red"
+           text="value: This is the Final part of the Journey for now.
+
+            Thanks for exploring and enjoying WebVR. -Malik Williams"
+
+            sound="on: mouseenter; src: #endgreeting"></a-entity>
+
+            <a-entity link="href: fog.html; title: Enter The Fog; image: #homeThumbnail; on: click; color: brown; peekMode: true" position="4 2 -10"></a-entity>
+
+            <!-- Back to the homeland -->
+            <a-entity link="href: index.html; title: Homeland; image: #homeThumbnail; on: click; color: brown; peekMode: true" position="11 2 20"></a-entity>
+
+    <a-camera>
+  <a-cursor>
+  </a-cursor>
+</a-camera>
+
+    </a-scene>
+
+  </body>
+</html>

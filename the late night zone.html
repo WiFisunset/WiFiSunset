@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-particle-system-component.min.js"></script>
+<script src="js/aframe-rain.min.js"></script>
+<script src="js/aframe-mountain-component.min.js"></script>
+<script src="js/aframe-audioanalyser-component.min.js"></script>
+<script src="js/aframe-room-component.min.js"></script>
+<script src="js/aframe-video-controls.min.js"></script>
+<script src="js/aframe-extras.ocean.min.js"></script>
+<script src="js/aframe-extras.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
+<script src="js/build.js"></script>
+<script src="js/scale-y-color-two.js"></script>
+<script src="js/audioanalyser-levels-scale.js"></script>
+<script src="js/audioanalyser-volume-bind.js"></script>
+<script src="js/audioanalyser-volume-scale.js"></script>
+<script src="js/audioanalyser-waveform.js"></script>
+<script src="js/ring-on-beat.js"></script>
+
+  </head>
+
+  <body>
+
+    <a-scene>
+
+      <a-assets>
+        <video id="research" loop="true" src="video/lnz.mp4"></video>
+        <audio id="gateway" crossorigin autoplay loop src="sound/remember.mp3"></audio>
+        <img id="skymap" src="img/equi.jpg" crossOrigin="anonymous">
+        <img id="homeThumbnail" src="img/homeland.jpg">
+
+        <a-mixin id="bar"
+          geometry="primitive: sphere"
+          material="color: rgb(11, 18, 25); shader: standard"
+          scale-y-color="from: 5 10 15; to: 20, 25, 30; maxScale: 20"
+        ></a-mixin>
+      </a-assets>
+
+      <a-entity id="analyser"
+        audioanalyser="src: #gateway"
+      ></a-entity>
+
+      <a-entity
+        audioanalyser-levels-scale="analyserEl: #analyser; max: 50; multiplier: 0.06"
+        entity-generator="mixin: bar; num: 168"
+        layout="type: circle; radius: 30"
+        rotation="0 0 0"
+        position="0 0 -9">
+      </a-entity>
+
+      <a-light type="ambient" color="#222"></a-light>
+      <a-light
+        audioanalyser-volume-bind="analyserEl: #analyser; component: light; property: intensity; max: 2.2; multiplier: .01"
+        position="1 2 1"
+        type="point"
+      ></a-light>
+      <!--Theta Length was default 90 degrees -->
+      <a-entity id="sky"
+        geometry="primitive: sphere; radius: 300; phiLength: 360; phiStart: 0; thetaLength: 150"
+        material="shader: flat; side: back; height: 1800; src: #skymap; width: 1800"
+      ></a-entity>
+
+      <a-plane id="plane"
+               rotation="-90 0 0"
+               color="#fef631"
+               height="700"
+               width="700"
+               geometry="plane">
+              <a-light type="point" color="white" intensity="2"></a-light>
+      </a-plane>
+
+      <a-video src="#research"
+              width="20"
+              height="20"
+              rotation="30.9 179.9 0"
+              position="-1 29.8 30.9"
+              fog="false">
+      </a-video>
+
+      <a-entity video-controls="src: #research" fog="false"></a-entity>
+
+      <!-- Back to the homeland -->
+      <a-entity link="href: index.html; title: Homeland; image: #homeThumbnail; on: click; color: brown; peekMode: true"
+                position="11 2 20">
+      </a-entity>
+
+      <a-camera acceleration="200" rotation="10 180 0">
+    <a-cursor>
+    </a-cursor>
+  </a-camera>
+
+    </a-scene>
+
+  </body>
+</html>

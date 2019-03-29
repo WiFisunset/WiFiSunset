@@ -1,0 +1,1 @@
+WebVR is only currently compatible with Firefox, Mobile browsers, and Chromium.

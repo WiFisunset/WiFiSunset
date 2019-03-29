@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>WebVR</title>
+
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-environment-component.min.js"></script>
+<script>
+  document.querySelector('a-link').navigate('destination.html');
+</script>
+<script src="js/aframe-animation-component.min.js"></script>
+
+  </head>
+  <body>
+
+   <a-scene class="fullscreen" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" ><canvas class="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
+
+        <a-assets>
+                  <img id="lnzThumbnail" src="img/lnz.jpg">
+                  <img id="spectrumThumbnail" src="img/spectrum.jpg">
+                  <img id="homeThumbnail" src="img/VR.jpg">
+                  <img id="gatewayThumbnail" src="img/gateway.jpg">
+                  <img id="testingPortal" src="img/albumish.png">
+                  <audio id="dreamer" src="sound/prelude.mp3"></audio>
+        </a-assets>
+
+        <!-- Place in the entity that controls the audio here -->
+        <a-entity geometry="primitive: sphere; color: blue" visible="false" position="0 2 -3" sound="on:mouseenter; src: #dreamer; loop: true"></a-entity>
+
+          <a-entity environment="seed:24;skyType:gradient;skyColor:#091b39;horizonColor:#284a9e;lightPosition:-0.72 0.62 0.4;fog:0.8;ground:spikes;groundYScale:4.91;groundColor:#061123;dressing:towers;dressingAmount:5;dressingColor:#fb000e;dressingScale:15;dressingVariance:20 20 20;grid:1x1;gridColor:#fb000e;preset:tron">
+
+             <!-- Animation for making the sky shift colors -->
+
+             <a-animation attribute="environment.skyColor" from="#091b39" to="#fd5e53" dur="60000" direction="alternate" repeat="indefinite"></a-animation>
+
+             <a-animation attribute="environment.horizonColor" from="#284a9e" to="#fef631" dur="60000" direction="alternate" repeat="indefinite"></a-animation>
+
+          </a-entity>
+
+    <a-entity link="href: fog.html; title: Enter The Fog; image: #homeThumbnail; on: click; color: brown; peekMode: true" position="-1 2 -20"></a-entity>
+    <a-entity link="href: gateway.html; title: Gateway; image: #gatewayThumbnail; on: click; color: brown; peekMode: true" position="2 2 -20"></a-entity>
+    <!--<a-entity link="href: spectrum.html; title: Project SPECTRUM; image: #spectrumThumbnail; on: click; color: brown; peekMode: true" position="2 2 20"></a-entity> -->
+
+    <a-entity link="href: the late night zone.html; title: The Late Night Zone Radio Show; image: #lnzThumbnail; on: click; color: silver; peekMode: true" position="-25 2 -2" rotation="0 90 0"></a-entity>
+    <a-entity link="href: albumish.html; title: Test Portal; image: #testingPortal; on: click; color: green; peekMode: true" position="-10 2 -7" rotation="0 90 0"></a-entity>
+
+     <a-entity id="text-plane"
+            position= "3 3.5 -10"
+            geometry="primitive: plane; width: 4; height: auto; depth: 30"
+            material="color: purple"
+            text="value: Thank you for joining us. Have fun and Explore!"
+
+             sound="on: mouseenter; src: #greeting; loop: false">
+     </a-entity>
+
+     <a-camera>
+   <a-cursor>
+   </a-cursor>
+</a-camera>
+
+    </a-scene>
+  </body>
+</html>

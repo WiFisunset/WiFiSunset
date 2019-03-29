@@ -1,0 +1,5 @@
+# Vectary OBJ Export units=mm
+mtllib Project Name.mtl 
+o 000_
+g Layer_2
+usemtl Default material_0

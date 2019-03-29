@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--  <title>Hello, WebVR! - A-Frame</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame"> -->
+
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-particle-system-component.min.js"></script>
+<script src="js/aframe-rain.min.js"></script>
+<script src="js/aframe-mountain-component.min.js"></script>
+<script src="js/aframe-audioanalyser-component.min.js"></script>
+<script src="js/aframe-room-component.min.js"></script>
+<script src="js/aframe-video-controls.min.js"></script>
+<script src="js/aframe-extras.ocean.min.js"></script>
+<script src="js/aframe-extras.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
+<script src="js/build.js"></script>
+<script src="js/scale-y-color.js"></script>
+<script src="js/audioanalyser-levels-scale.js"></script>
+<script src="js/audioanalyser-volume-bind.js"></script>
+<script src="js/audioanalyser-volume-scale.js"></script>
+<script src="js/audioanalyser-waveform.js"></script>
+<script src="js/ring-on-beat.js"></script>
+
+  </head>
+
+  <body>
+
+    <a-scene>
+      <a-assets>
+        <!-- By Tours. From http://freemusicarchive.org/music/Tours/Enthusiast/Tours_-_Enthusiast. CC Attribution License. -->
+        <audio id="gateway" crossorigin autoplay loop src="sound/prelude.mp3"></audio>
+        <img id="floor" src="img/stars.jpg" crossOrigin="anonymous">
+        <img id="skymap" src="img/test.jpg" crossOrigin="anonymous">
+        <!-- material="color: rgb(10, 20, 50); shader: flat" -->
+        <a-mixin id="bar"
+          geometry="primitive: sphere"
+          material="color: rgb(10, 20, 50)"
+          scale-y-color="from: 10 20 50; to: 210, 220, 250; maxScale: 15"
+        ></a-mixin>
+      </a-assets>
+      <!-- Audio analyser. -->
+      <a-entity id="analyser"
+        audioanalyser="src: #gateway"
+        audioanalyser-waveform="radius: 0.5"
+        rotation="90 0 0"
+        position="0 30 0"
+      ></a-entity>
+      <!-- Singing box. -->
+      <a-entity id="jim"
+        geometry="primitive: box; depth: 2; height: 5; width: 3.5"
+        material="color: #10193F"
+        ring-on-beat="analyserEl: #analyser"
+        position="0 0 -5.25"
+      ></a-entity>
+      <a-sphere id="leftEyeball" position="-1 2 -4" radius="0.5" shader="flat"></a-sphere>
+      <a-sphere id="rightEyeball" position="1 2 -4" radius="0.5" shader="flat"></a-sphere>
+      <a-sphere id="leftEye" color="black" position="-1 2 -3.5" radius="0.1"></a-sphere>
+      <a-sphere id="rightEye" color="black" position="1 2 -3.5" radius="0.1"></a-sphere>
+      <a-sphere id="mouth"
+        color="#000"
+        audioanalyser-volume-scale="analyserEl: #analyser; multiplier: .004"
+        position="0 1 -4"
+        side="double"
+        shader="flat"
+        spotify-search
+      ></a-sphere>
+      <!-- Spectrum visualization. -->
+      <a-entity
+        audioanalyser-levels-scale="analyserEl: #analyser; max: 50; multiplier: 0.06"
+        entity-generator="mixin: bar; num: 128"
+        layout="type: circle; radius: 30"
+        rotation="0 0 0"
+      ></a-entity>
+      <!-- Lights, sky, ground. -->
+      <a-light type="ambient" color="#222"></a-light>
+      <a-light
+        audioanalyser-volume-bind="analyserEl: #analyser; component: light; property: intensity; max: 2.2; multiplier: .01"
+        position="1 2 1"
+        type="point"
+      ></a-light>
+      <a-entity id="sky"
+        geometry="primitive: sphere; radius: 500; phiLength: 360; phiStart: 0; thetaLength: 90"
+        material="shader: flat; side: back; height: 2048; src: #skymap; width: 2048"
+      ></a-entity>
+      <a-entity id="ground"
+        geometry="primitive: circle; radius: 30.5"
+        rotation="-90 0 0"
+        material="src: #floor"
+      ></a-entity>
+      <a-entity particle-system="preset: snow"></a-entity>
+
+      <a-entity id="screen" geometry="primitive: box; height: 10; width: 20" material="src: url(img/wood.jpg); roughness: 5" light="type: point; intensity: 2; color: white" position="-1 5.5 8.5"></a-entity>
+
+    </a-scene>
+
+  </body>
+</html>

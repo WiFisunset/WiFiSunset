@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Testing WebVR Simple Box -->
+
+<html>
+        <head>
+                <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+                <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+        </head>
+
+        <body>
+
+                <a-scene>
+				
+				
+						<a-assets>
+						
+								<img id="sphereTexture" src="world.jpg"> <!-- Image size MUST BE 900 length & 675 width in PIXELS -->
+						
+						</a-assets>
+						
+						<a-entity
+						position= "3 5 -10"
+  geometry="primitive: plane; width: 4; height: auto"
+  material="color: blue"
+  text="value: Malik R. Williams: 
+Founder, Sound Designer
+
+Currently residing in sunny Las Vegas, and is the full-time project manager for Team Unicorn.
+
+As a kid, Malik wanted to design and make video games. He got into video games when he was captivated by the Sega Genesis and Nintendo 64, and quickly knew he loved video games.
+
+He carries a CompTIA Project + Certification coupled with a Passion for vision and making ideas come to life. His versatility allows him to lead the music composition, and the storyboarding development for Project Aura.
+
+
+Tasha Louise Bacusa Gonzales: 
+Co-Founder, Lead Artist
+
+Tasha has carried a passion for video games ever since childhood, and is the Leading Artist Manager for Team Unicorn.
+
+She carries the exceptional skills necessary in order to create games, animations, and concepts. Her professional eye for Art guides her in breathing life into the
+
+She is a Graduate in Game Production and Design at Sanford Brown College in Las Vegas."></a-entity>
+						
+						
+                        <!-- Sets the Box's position (meters), size, and color -->
+                        <a-sphere src= "#sphereTexture" position= "0 2 -5" rotation= "0 45 45" scale= "2 2 2">
+						
+						<a-animation attribute= "position" to= "0 2.2 -5" direction= "alternate" dur= "2000" repeat= "indefinite"></a-animation>
+						
+						</a-sphere>
+
+                        <!-- Sets the preset environment for the VR Environment -->
+                        <a-entity environment= "preset: osiris; numDressing: 500"></a-entity>
+						
+						 <!-- Camera + Cursor settings -->
+                                <a-camera>
+                                        <a-cursor id= "cursor">
+                                                <a-animation begin= "click" easing= "ease-in" attribute= "scale" fill= "backwards" from= "0.1 0.1 0.1" to= "1 1 1" dur= "150"></a-animation>
+                                                <a-animation begin= "cursor-fusing" easing= "ease-in" attribute= "scale" fill= "backwards" from= "1 1 1" to= "0.1 0.1 0.1" dur= "1500"></a-animation>
+                                        </a-cursor>
+                                </a-camera>
+						
+                </a-scene>
+        </body>
+</html>
