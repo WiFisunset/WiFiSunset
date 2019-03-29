@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Switch all of the js files to local for protection -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-environment-two-component.min.js"></script>
+<script>
+  document.querySelector('a-link').navigate('destination.html');
+</script>
+<script src="js/aframe-animation-component.min.js"></script>
+
+<!-- For the: [<a-link href="index.html" title="My Homepage" image="#homeThumbnail"></a-link>
+] -->
+  </head>
+  <body>
+
+   <a-scene class="fullscreen" fog="color:#5b7687;far:28;density:0" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" ><canvas class="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
+
+        <a-assets>
+                  <a-asset-item id="grass" src="models/weeds.obj"></a-asset-item>
+                  <img id="spectrumThumbnail" src="img/spectrum.jpg">
+                  <img id="homeThumbnail" src="img/VR.jpg">
+                  <img id="gatewayThumbnail" src="img/gateway.jpg">
+                  <audio id="dreamer" src="sound/prelude.mp3"></audio>
+                  <audio id="greeting" src="sound/greeting.mp3" preload="auto"></audio>
+                  <audio id="wolves" src="sound/wolves.mp3"></audio>
+        </a-assets>
+
+        <!-- Place in the entity that controls the audio here -->
+        <a-entity geometry="primitive: sphere; color: blue" visible="false" position="0 2 -3" sound="on:mouseenter; src: #dreamer; loop: true"></a-entity>
+
+        <a-entity environment="ground: hills; grid:none; dressing:none; groundColor:#567d46;gridColor:#608038;dressingColor:#608038;groundColor2:#567d46;groundTexture:squares;dressingVariance:10 10 10;horizonColor:#f5ef35;skyColor:#f35b51;active:true;seed:14;skyType:gradient;lightPosition:-0.72 0.62 0.4;fog:0.8;groundYScale:4.91;dressingAmount:500;dressingScale:15;preset:tron" environment.skycolor="#f35b51" environment.horizoncolor="#f5ef35">
+
+                             <!-- Animation for making the sky shift colors -->
+
+                             <a-animation attribute="environment.skyColor" from="#091b39" to="#fd5e53" dur="60000" direction="alternate" repeat="indefinite"></a-animation>
+
+                             <a-animation attribute="environment.horizonColor" from="#284a9e" to="#fef631" dur="60000" direction="alternate" repeat="indefinite"></a-animation>
+
+        <a-entity position="0 50 0" light="intensity:0.6;color:#f9ada8;groundColor:#567d46;type:hemisphere"></a-entity><a-entity position="-0.72 0.62 0.4" light="intensity:0.6;shadowCameraLeft:-10;shadowCameraBottom:-10;shadowCameraRight:10;shadowCameraTop:10"></a-entity><a-entity rotation="-90 0 0" class="environmentGround" scale="1 1 4.91" shadow="cast:false;receive:false"></a-entity><a-entity visible="false"></a-entity>
+
+      </a-entity>
+
+
+     <!-- Ctrl + Alt + Shift + s -->
+    <a-entity link="href: fog.html; title: Enter The Fog; image: #homeThumbnail; on: click; color: brown; peekMode: true" position="-1 2 -20"></a-entity>
+    <a-entity link="href: gateway.html; title: Gateway; image: #gatewayThumbnail; on: click; color: brown; peekMode: true" position="2 2 -20"></a-entity>
+    <a-entity link="href: spectrum.html; title: Project SPECTRUM; image: #spectrumThumbnail; on: click; color: brown; peekMode: true" position="2 2 20"></a-entity>
+
+     <!-- Floating Text in VR whooooooooooooooooooooooooo-->
+     <a-entity id="text-plane"
+            position= "3 3.5 -10"
+            geometry="primitive: plane; width: 4; height: auto; depth: 30"
+            material="color: purple"
+            text="value: Thank you for joining us on this journey. Into the immeasurable possiblities of this century.
+
+             So open your mind, and begin to explore."
+
+             sound="on: mouseenter; src: #greeting; loop: false"></a-entity>
+
+
+     <a-camera>
+   <a-cursor>
+   </a-cursor>
+</a-camera>
+
+    </a-scene>
+  </body>
+</html>

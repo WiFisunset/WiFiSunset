@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--  <title>Hello, WebVR! - A-Frame</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame"> -->
+
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+<script src="js/aframe-animation-component.min.js"></script>
+<script src="js/aframe-particle-system-component.min.js"></script>
+<script src="js/aframe-rain.min.js"></script>
+<script src="js/aframe-mountain-component.min.js"></script>
+<script src="js/aframe-audioanalyser-component.min.js"></script>
+<script src="js/aframe-room-component.min.js"></script>
+<script src="js/aframe-video-controls.min.js"></script>
+<script src="js/aframe-extras.ocean.min.js"></script>
+<script src="js/aframe-extras.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <a-scene fog="type: linear; color: #AAB; far: 50; near: 0">
+
+      <a-assets>
+                <video id="research" loop="true" src="video/jamie-ward-ted-x.mp4"></video>
+                <img id="vrThumbnail" src="img/VR.jpg">
+                <img id="gatewayThumbnail" src="img/gateway.jpg">
+                <img id="homeThumbnail" src="img/homeland.jpg">
+                <audio id="gateway" src="sound/gateway.mp3"></audio>
+      </a-assets>
+
+      <!-- Changes the color of the fog and alternates the color. You can set a Delay to have different colors shift and repeat. -->
+       <a-animation begin="100" attribute="fog.color" from="#B2FF8D" to="#FF8DFB" dur="40000" direction="alternate" repeat="indefinite"></a-animation>
+
+      <a-sky color="#7ec0ee"></a-sky>
+
+      <!-- Ocean -->
+      <a-ocean width="5000" depth="5000" density="50" opacity="1" position="0 -0.763 0" ocean="amplitude:0.17;density:350;depth:1300;width:1300;amplitudeVariance:0.14">
+
+          <a-animation begin="100" attribute="color" from="blue" to="white" dur="400" direction="alternate" repeat="indefinite"></a-animation>
+
+      </a-ocean>
+
+      <a-plane static-body="sphereRadius:NaN" id="plane" rotation="-90 0 0" color="#A5F2F3" height="90000" width="90000" geometry="height:30">
+              <a-light type="point" color="white" intensity="2"></a-light>
+         </a-plane>
+
+   <a-entity geometry="primitive: box; width: 10; depth: 12;" material="src: url(img/stars.jpg)" light="type: point; intensity: 0.9; color: white" position="0 5 -1"></a-entity>
+
+  <a-entity id="text-plane"
+           position= "10 3.5 -10"
+           geometry="primitive: plane; width: 4; height: auto; depth: 30"
+           material="color: red"
+           text="value: Synesthesia Research is a field of research that's still in its early stages.
+
+           More research is needed to understand the complexity of the Human Mind.
+
+           For now I offer this small glimpse into the World of Synesthesia. Enjoy!
+
+            Video Credit To: The Curious World of Synaesthesia | Jamie Ward | TEDxCambridgeUniversity">
+  </a-entity>
+
+            <a-entity link="href: gateway.html; title: Gateway; image: #gatewayThumbnail; on: click; color: brown; peekMode: true" position="50 2 -1" rotation="0 90 0"></a-entity>
+            <a-entity link="href: fog.html; title: Enter The Fog; image: #vrThumbnail; on: click; color: brown; peekMode: true" position="-50 2 -1" rotation="0 90 0"></a-entity>
+
+
+            <a-entity link="href: index.html; title: Homeland; image: #homeThumbnail; on: click; color: brown; peekMode: true" position="11 2 11"></a-entity>
+
+          <a-entity position="-39.068 8.771 4.414" id="spectrum" text-geometry="size:0.87;value:Project SPECTRUM" rotation="0 89.66789493797383 0"></a-entity>
+          <a-entity position="39.068 8.771 -6" id="spectrum"
+                    text-geometry="size:0.87;value:Project SPECTRUM"
+                    rotation="0 -89.66789493797383 0">
+          </a-entity>
+
+            <!-- Plays a Video in WebVR!!! And the Entity controls the Play/Pause Button -->
+            <a-video src="#research" width="50" height="40" position="-10 20.5 20"  rotation="0 -180 0" fog="false"></a-video>
+            <a-entity video-controls="src: #research" fog="false"></a-entity>
+
+            <!-- Plays a Video in WebVR!!! And the Entity controls the Play/Pause Button -->
+            <a-video src="#research" width="50" height="40" position="-10 20.5 -20" fog="false"></a-video>
+
+    <a-camera>
+  <a-cursor>
+  </a-cursor>
+</a-camera>
+
+    </a-scene>
+
+  </body>
+</html>

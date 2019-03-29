@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  </head>
+
+  <body>
+
+    <a-scene>
+
+      <a-assets>
+        <video id="360lnz" autoplay loop="true" src="video/360lnz.mp4">
+          <img id="homeThumbnail" src="img/homeland.jpg">
+
+        <a-mixin id="bar"
+          geometry="primitive: sphere"
+          material="color: rgb(11, 18, 25); shader: standard"
+          scale-y-color="from: 5 10 15; to: 20, 25, 30; maxScale: 20"
+        ></a-mixin>
+      </a-assets>
+
+      <!-- Back to the homeland -->
+      <a-entity link="href: index.html; title: Homeland; image: #homeThumbnail; on: click; color: brown; peekMode: true"
+                position="11 2 20">
+      </a-entity>
+
+      <!-- Using the asset management system. -->
+      <a-videosphere src="#360lnz"></a-videosphere>
+
+
+      <a-camera wasd-controls acceleration="200" rotation="10 180 0">
+    <a-cursor>
+    </a-cursor>
+  </a-camera>
+
+    </a-scene>
+
+  </body>
+</html>
